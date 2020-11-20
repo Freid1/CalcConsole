@@ -36,7 +36,7 @@ public class CalcParser {
                 elementTwo.append(Character.toString(aChar));
             }
 
-            if (numberOfOperator>1){
+            if (numberOfOperator > 1) {
                 inputOutputConsole.outputToConsole("Неправельный ввод примера");
                 inputOutputConsole.outputToConsole("Должен быть один оператор +,-,/,*");
                 inputOutputConsole.outputToConsole("Приложение завершает работу");
@@ -93,8 +93,12 @@ public class CalcParser {
     private String arabicToRome(int number) {
         if (number > 10) {
             StringBuilder stringBuilder = new StringBuilder();
-            int dec = number / 10;
-
+            int fiveDec = number / 50;
+            int lastPartFiveDec = number % 50;
+            int dec = lastPartFiveDec / 10;
+            for (int i = 0; i < fiveDec; i++) {
+                stringBuilder.append("L");
+            }
             for (int i = 0; i < dec; i++) {
                 stringBuilder.append(romeNumber[0]);
             }
@@ -136,7 +140,7 @@ public class CalcParser {
                 System.exit(0);
             }
             return String.valueOf(resultArabic);
-        }else if (isRomeNumber(mainParts[0]) && isRomeNumber(mainParts[1])) {
+        } else if (isRomeNumber(mainParts[0]) && isRomeNumber(mainParts[1])) {
             int one = romeToArabic(mainParts[0]);
             int two = romeToArabic(mainParts[1]);
             int resultRome = 0;
@@ -153,8 +157,7 @@ public class CalcParser {
                 System.exit(0);
             }
             return arabicToRome(resultRome);
-        }else
-        {
+        } else {
             inputOutputConsole.outputToConsole("Неверно ввыдены данные программа прекращает свое действие");
             System.exit(0);
         }
