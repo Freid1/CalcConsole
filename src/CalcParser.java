@@ -31,9 +31,9 @@ public class CalcParser {
                 operator = Character.toString(aChar);
                 numberOfOperator++;
             } else if (numberOfOperator == 0) {
-                elementOne.append(Character.toString(aChar));
+                elementOne.append(Character.toString(aChar).toUpperCase());
             } else if (numberOfOperator == 1) {
-                elementTwo.append(Character.toString(aChar));
+                elementTwo.append(Character.toString(aChar).toUpperCase());
             }
 
             if (numberOfOperator > 1) {
@@ -93,9 +93,14 @@ public class CalcParser {
     private String arabicToRome(int number) {
         if (number > 10) {
             StringBuilder stringBuilder = new StringBuilder();
-            int fiveDec = number / 50;
-            int lastPartFiveDec = number % 50;
+            int hun=number/100;
+            int lastPartHun=number%100;
+            int fiveDec = lastPartHun / 50;
+            int lastPartFiveDec = lastPartHun % 50;
             int dec = lastPartFiveDec / 10;
+            for (int i = 0; i <hun ; i++) {
+                stringBuilder.append("C");
+            }
             for (int i = 0; i < fiveDec; i++) {
                 stringBuilder.append("L");
             }
